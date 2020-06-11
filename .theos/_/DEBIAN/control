@@ -1,0 +1,10 @@
+Package: com.ldh.dateats3
+Name: Date At S3
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: hdl
+Author: hdl
+Section: Tweaks
+Version: 0.0.1-44+debug
+Installed-Size: 56

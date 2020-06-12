@@ -3,6 +3,7 @@
 @interface _UIStatusBarStringView: UILabel {
 }
 @property (nonatomic,copy) NSString * originalText;
+-(void)didMoveToWindow;
 @end
 
 %hook _UIStatusBarStringView
@@ -23,8 +24,9 @@
 		NSString *lunarDate = [NSString stringWithFormat:@"%li.%li", day , month];
 		NSString *newString = [NSString stringWithFormat:@"%@\n%@-%@", text, shortDate, lunarDate];
 		self.numberOfLines = 2;
-		self.textAlignment = 1;
-		[self setFont: [UIFont systemFontOfSize:11 weight:UIFontWeightMedium]];
+		self.textAlignment = 3;
+		self.adjustsFontSizeToFitWidth = true;
+		[self setFont: [UIFont systemFontOfSize:10 weight:UIFontWeightMedium]];
 		%orig(newString);
 	}
 	else {
@@ -34,9 +36,11 @@
 -(void)didMoveToWindow {
 	NSString *text = self.originalText;
 	if([text containsString:@":"]) {
-		[self setFont: [UIFont systemFontOfSize:11 weight:UIFontWeightMedium]];
+		self.numberOfLines = 2;
+		self.textAlignment = 3;
+		self.adjustsFontSizeToFitWidth = true;
+		[self setFont: [UIFont systemFontOfSize:10 weight:UIFontWeightMedium]];
 	}
 	%orig;
 }
-
 %end
